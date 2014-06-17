@@ -1,0 +1,12 @@
+{
+  "name": "jacek-testing",
+  "description": "testing stuff by Jacek Kopecky",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "ws": "0.4.x",
+    "http-auth": "2.x",
+    "posix": "1.0.x"
+  }
+}
