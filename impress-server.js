@@ -1,3 +1,16 @@
+/*
+ * this is a server for impress.js remote control and interactivity features
+ *
+ * author: Jacek Kopecký, jacek@jacek.cz, http://github.com/jacekkopecky
+ *
+ * for impress.js, see http://github.com/bartaz/impress.js
+ *
+ * as of 2014-06-17, the remote control package hasn't actually been put on
+ * github yet, and no interactivity features have been written, sorry about
+ * that, it's all coming
+ *
+ */
+
 var WebSocketServer = require('ws').Server;
 var http = require('http');
 var express = require('express');

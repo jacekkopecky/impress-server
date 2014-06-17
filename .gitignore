@@ -1,0 +1,5 @@
+test*.js
+static/index2.html
+static/*/
+node_modules/
+*.swp
