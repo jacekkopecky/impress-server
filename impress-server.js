@@ -9,6 +9,9 @@
  * github yet, and no interactivity features have been written, sorry about
  * that, it's all coming
  *
+ * current task
+ * ------------
+ * (done) for a given path, accept the first password that comes, retire it after last client disconnects
  */
 
 var WebSocketServer = require('ws').Server;
@@ -31,7 +34,7 @@ if (nofilelimit.hard != null && nofilelimit.hard < desiredlimit) {
     desiredlimit = nofilelimit.hard;
 }
 posix.setrlimit('nofile', { soft: desiredlimit });
-log({'log-msg': 'nofile limit', 'limit': posix.getrlimit('nofile')});
+log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
 
 app.use(express.static('static'));
 
@@ -44,8 +47,6 @@ var queues = {};
 
 // todo a lot of logging
 
-var wss1 = new WebSocketServer({server: server1});
-var wss2 = new WebSocketServer({server: server2});
 wsserver = function(ws) {
     var path = ws.upgradeReq.url;
     log({'log-msg': 'received connection for uri ' + path});
@@ -74,24 +75,29 @@ wsserver = function(ws) {
             msg['server-date'] = now.toISOString();
             msg['server-time-millis'] = now.getTime();
             msg['server-path'] = path;
-            if ('kimono' == msg.password) {
-                delete msg.password;
-                queue.lastMessageJSON = JSON.stringify(msg);
-                clients.forEach(function(client) {
-                    if (client != ws) {
-                        client.send(queue.lastMessageJSON);
-                    }
-                });
-                // confirm message by echoing it, with "self": "1"
-                msg['self']=1;
-                ws.send(JSON.stringify(msg));
-
-                // log message
-                log(msg);
-            } else {
+            if (!queue.password) { 
+                queue.password = msg.password; 
+                log({'log-msg': 'password received', 'password': queue.password}, now);
+            }
+            else if (queue.password != msg.password) {
                 log({'log-msg': "wrong pwd, not sending msg " + JSON.stringify(msg)}, now);
                 ws.send(JSON.stringify({error: "wrong password", data: data}));
+                return;
             }
+            
+            delete msg.password;
+            queue.lastMessageJSON = JSON.stringify(msg);
+            clients.forEach(function(client) {
+                if (client != ws) {
+                    client.send(queue.lastMessageJSON);
+                }
+            });
+            // confirm message by echoing it, with "self": "1"
+            msg['self']=1;
+            ws.send(JSON.stringify(msg));
+
+            // log message
+            log(msg, now);
         } catch (e) {
             log({'log-msg': "malformed message: " + e}, now);
             ws.send(JSON.stringify({error: "malformed message", data: data}));
@@ -117,5 +123,7 @@ wsserver = function(ws) {
     });
 };
 
+var wss1 = new WebSocketServer({server: server1});
+var wss2 = new WebSocketServer({server: server2});
 wss1.on('connection', wsserver);
 wss2.on('connection', wsserver);
