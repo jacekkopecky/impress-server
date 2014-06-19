@@ -11,8 +11,10 @@
  *
  * current task
  * ------------
- * (done) for a given path, accept the first password that comes, retire it after last client disconnects
+ * (none ongoing)
  */
+
+'use strict';
 
 var WebSocketServer = require('ws').Server;
 var http = require('http');
@@ -47,7 +49,7 @@ var queues = {};
 
 // todo a lot of logging
 
-wsserver = function(ws) {
+var wsserver = function(ws) {
     var path = ws.upgradeReq.url;
     log({'log-msg': 'received connection for uri ' + path});
 
