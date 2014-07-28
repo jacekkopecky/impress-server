@@ -38,6 +38,13 @@ if (nofilelimit.hard != null && nofilelimit.hard < desiredlimit) {
 posix.setrlimit('nofile', { soft: desiredlimit });
 log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
 
+// simple logging of every request: date, HTTP method, path
+app.use(function(req, res, next) {
+    console.log(new Date().toISOString() + ' ' + req.method + ' ' + req.path);
+    return next();
+});
+
+app.use(express.static('jacek-soc'));
 app.use(express.static('static'));
 
 var server1 = http.createServer(app);
@@ -60,8 +67,8 @@ var wsserver = function(ws) {
     var clients = queue.clients || (queue.clients = []);
     clients.push(ws);
     log({'log-msg': "clients length: " + clients.length});
-    
-    // send last message seen on this queue (if any) 
+
+    // send last message seen on this queue (if any)
     if (queue.lastMessageJSON != undefined) {
         ws.send(queue.lastMessageJSON);
     }
@@ -77,8 +84,8 @@ var wsserver = function(ws) {
             msg['server-date'] = now.toISOString();
             msg['server-time-millis'] = now.getTime();
             msg['server-path'] = path;
-            if (!queue.password) { 
-                queue.password = msg.password; 
+            if (!queue.password) {
+                queue.password = msg.password;
                 log({'log-msg': 'password received', 'password': queue.password}, now);
             }
             else if (queue.password != msg.password) {
@@ -86,7 +93,7 @@ var wsserver = function(ws) {
                 ws.send(JSON.stringify({error: "wrong password", data: data}));
                 return;
             }
-            
+
             delete msg.password;
             queue.lastMessageJSON = JSON.stringify(msg);
             clients.forEach(function(client) {
@@ -105,7 +112,7 @@ var wsserver = function(ws) {
             ws.send(JSON.stringify({error: "malformed message", data: data}));
         }
     });
-    
+
     // todo maybe have an always-increasing msg-id for ordering semantics?
 
     ws.on('close', function() {
