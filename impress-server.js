@@ -16,11 +16,16 @@
 
 'use strict';
 
-var WebSocketServer = require('ws').Server;
-var http = require('http');
-var express = require('express');
-var app = express();
-var posix = require('posix');
+var WebSocketServer = require('ws').Server
+var http = require('http')
+var express = require('express')
+var posix = require('posix')
+var morgan  = require('morgan')
+
+var app = express()
+
+// standard apache logging
+app.use(morgan('combined'))
 
 var log = function(obj, now) {
     now = now || new Date();
@@ -38,11 +43,11 @@ if (nofilelimit.hard != null && nofilelimit.hard < desiredlimit) {
 posix.setrlimit('nofile', { soft: desiredlimit });
 log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
 
-// simple logging of every request: date, HTTP method, path
-app.use(function(req, res, next) {
-    console.log(new Date().toISOString() + ' ' + req.method + ' ' + req.path);
-    return next();
-});
+//  // simple logging of every request: date, HTTP method, path
+//  app.use(function(req, res, next) {
+//      console.log(new Date().toISOString() + ' ' + req.method + ' ' + req.path);
+//      return next();
+//  });
 
 app.use(express.static('jacek-soc'));
 app.use(express.static('static'));
