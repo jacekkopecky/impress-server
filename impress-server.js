@@ -21,11 +21,13 @@ var http = require('http')
 var express = require('express')
 var posix = require('posix')
 var morgan  = require('morgan')
+var fs = require('fs')
 
 var app = express()
 
-// standard apache logging
-app.use(morgan('combined'))
+// standard apache logging to file http.log
+var httplog = fs.createWriteStream('http.log', {flags: 'a', mode: 384 /* 0600 */ })
+app.use(morgan('combined', {stream: httplog}))
 
 var log = function(obj, now) {
     now = now || new Date();
