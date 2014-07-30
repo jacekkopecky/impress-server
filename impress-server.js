@@ -29,6 +29,9 @@ var app = express()
 var httplog = fs.createWriteStream('http.log', {flags: 'a', mode: 384 /* 0600 */ })
 app.use(morgan('combined', {stream: httplog}))
 
+// also tiny logging to console
+app.use(morgan('tiny'))
+
 var log = function(obj, now) {
     now = now || new Date();
     obj.logging_timestamp = now.toISOString();
