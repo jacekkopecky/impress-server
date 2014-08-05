@@ -32,6 +32,15 @@ app.use(morgan('combined', {stream: httplog}))
 // also tiny logging to console
 app.use(morgan('tiny'))
 
+var requestcount = 0;
+var startdate = new Date();
+
+// a simple request counter
+app.use(function(req, res, next) {
+    requestcount++
+    return next()
+})
+
 var log = function(obj, now) {
     now = now || new Date();
     obj.logging_timestamp = now.toISOString();
@@ -54,8 +63,17 @@ log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
 //      return next();
 //  });
 
-app.use(express.static('jacek-soc'));
-app.use(express.static('static'));
+var fiveMinutes = 5*60*1000;
+
+app.use(express.static('jacek-soc', { maxAge: fiveMinutes }));
+app.use(express.static('static', { maxAge: fiveMinutes }));
+
+app.get('/api/status', function(req, res) {
+    res.header('Content-Type', 'text/plain');
+    res.send("server OK at  " + new Date() + "\r\n" +
+             "running since " + startdate + "\r\n" +
+             "processed " + requestcount + " requests");
+})
 
 var server1 = http.createServer(app);
 server1.listen(8443);
