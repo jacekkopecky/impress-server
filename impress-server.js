@@ -57,16 +57,11 @@ if (nofilelimit.hard != null && nofilelimit.hard < desiredlimit) {
 posix.setrlimit('nofile', { soft: desiredlimit });
 log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
 
-//  // simple logging of every request: date, HTTP method, path
-//  app.use(function(req, res, next) {
-//      console.log(new Date().toISOString() + ' ' + req.method + ' ' + req.path);
-//      return next();
-//  });
+var fiveMinutes = 5*60*1000
+var extensions = [ "html", "css", "js", "ico" ]
 
-var fiveMinutes = 5*60*1000;
-
-app.use(express.static('jacek-soc', { maxAge: fiveMinutes }));
-app.use(express.static('static', { maxAge: fiveMinutes }));
+app.use(express.static('jacek-soc', { maxAge: fiveMinutes, extensions: extensions}));
+app.use(express.static('static', { maxAge: fiveMinutes, extensions: extensions }));
 
 app.get('/api/status', function(req, res) {
     res.header('Content-Type', 'text/plain');
