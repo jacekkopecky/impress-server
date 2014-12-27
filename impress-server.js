@@ -101,24 +101,28 @@ var wsserver = function(ws) {
     ws.on('message', function(data, flags) {
         var now = new Date();
         log({'log-msg': "message on path " + path}, now);
-        var msg = {};
         try {
-            msg = JSON.parse(data);
+            var msg = JSON.parse(data);
             msg['server-date'] = now.toISOString();
             msg['server-time-millis'] = now.getTime();
             msg['server-path'] = path;
+
             if (!queue.password) {
                 queue.password = msg.password;
-                log({'log-msg': 'password received', 'password': queue.password}, now);
+                log({'log-msg': 'password received'}, now);
             }
             else if (queue.password != msg.password) {
                 log({'log-msg': "wrong pwd, not sending msg " + JSON.stringify(msg)}, now);
-                ws.send(JSON.stringify({error: "wrong password", data: data}));
+                ws.send(JSON.stringify({cmd: 'error', error: "wrong password", data: data}));
                 return;
             }
 
             delete msg.password;
             queue.lastMessageJSON = JSON.stringify(msg);
+
+            // log message
+            log({msg: msg}, now);
+
             clients.forEach(function(client) {
                 if (client != ws) {
                     client.send(queue.lastMessageJSON);
@@ -128,11 +132,9 @@ var wsserver = function(ws) {
             msg['self']=1;
             ws.send(JSON.stringify(msg));
 
-            // log message
-            log(msg, now);
         } catch (e) {
             log({'log-msg': "malformed message: " + e}, now);
-            ws.send(JSON.stringify({error: "malformed message", data: data}));
+            ws.send(JSON.stringify({cmd: 'error', error: "malformed message", data: data}));
         }
     });
 
