@@ -76,6 +76,7 @@ var server2 = http.createServer(app);
 server2.listen(8000);
 
 var queues = {};
+var nextClientID = 0;
 
 // todo a lot of logging
 
@@ -88,7 +89,9 @@ var wsserver = function(ws) {
     // add the socket to a list by the path
     var queue = queues[path] || (queues[path] = {});
     var clients = queue.clients || (queue.clients = []);
+    var clientID = nextClientID++;
     clients.push(ws);
+
     log({'log-msg': "clients length: " + clients.length});
 
     // send last message seen on this queue (if any)
@@ -106,26 +109,35 @@ var wsserver = function(ws) {
             msg['server-date'] = now.toISOString();
             msg['server-time-millis'] = now.getTime();
             msg['server-path'] = path;
+            msg['client-id'] = clientID;
 
-            if (!queue.password) {
-                queue.password = msg.password;
-                log({'log-msg': 'password received'}, now);
-            }
-            else if (queue.password != msg.password) {
-                log({'log-msg': "wrong pwd, not sending msg " + JSON.stringify(msg)}, now);
-                ws.send(JSON.stringify({cmd: 'error', error: "wrong password", data: data}));
-                return;
+            if (msg.cmd !== 'form-data') {
+                if (!queue.password && msg.password) {
+                    queue.password = msg.password;
+                    log({'log-msg': 'password received'}, now);
+                }
+                else if (!msg.password || queue.password != msg.password) {
+                    log({'log-msg': "wrong pwd, not sending msg " + JSON.stringify(msg)}, now);
+                    ws.send(JSON.stringify({cmd: 'error', error: "wrong password", data: data}));
+                    return;
+                }
             }
 
             delete msg.password;
-            queue.lastMessageJSON = JSON.stringify(msg);
+
+            var msgString = JSON.stringify(msg);
+
+            if (msg.cmd !== 'form-data' &&
+                msg.cmd !== 'reset-form') {
+                queue.lastMessageJSON = msgString;
+            }
 
             // log message
             log({msg: msg}, now);
 
             clients.forEach(function(client) {
                 if (client != ws) {
-                    client.send(queue.lastMessageJSON);
+                    client.send(msgString);
                 }
             });
             // confirm message by echoing it, with "self": "1"
@@ -133,7 +145,7 @@ var wsserver = function(ws) {
             ws.send(JSON.stringify(msg));
 
         } catch (e) {
-            log({'log-msg': "malformed message: " + e}, now);
+            log({'log-msg': "malformed message: " + e, data: data}, now);
             ws.send(JSON.stringify({cmd: 'error', error: "malformed message", data: data}));
         }
     });
