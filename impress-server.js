@@ -76,6 +76,7 @@ var server2 = http.createServer(app);
 server2.listen(8000);
 
 var queues = {};
+var nextClientID = 0;
 
 // todo a lot of logging
 
@@ -88,7 +89,9 @@ var wsserver = function(ws) {
     // add the socket to a list by the path
     var queue = queues[path] || (queues[path] = {});
     var clients = queue.clients || (queue.clients = []);
+    var clientID = nextClientID++;
     clients.push(ws);
+
     log({'log-msg': "clients length: " + clients.length});
 
     // send last message seen on this queue (if any)
@@ -101,38 +104,49 @@ var wsserver = function(ws) {
     ws.on('message', function(data, flags) {
         var now = new Date();
         log({'log-msg': "message on path " + path}, now);
-        var msg = {};
         try {
-            msg = JSON.parse(data);
+            var msg = JSON.parse(data);
             msg['server-date'] = now.toISOString();
             msg['server-time-millis'] = now.getTime();
             msg['server-path'] = path;
-            if (!queue.password) {
-                queue.password = msg.password;
-                log({'log-msg': 'password received', 'password': queue.password}, now);
-            }
-            else if (queue.password != msg.password) {
-                log({'log-msg': "wrong pwd, not sending msg " + JSON.stringify(msg)}, now);
-                ws.send(JSON.stringify({error: "wrong password", data: data}));
-                return;
+            msg['client-id'] = clientID;
+
+            if (msg.cmd !== 'form-data') {
+                if (!queue.password && msg.password) {
+                    queue.password = msg.password;
+                    log({'log-msg': 'password received'}, now);
+                }
+                else if (!msg.password || queue.password != msg.password) {
+                    log({'log-msg': "wrong pwd, not sending msg " + JSON.stringify(msg)}, now);
+                    ws.send(JSON.stringify({cmd: 'error', error: "wrong password", data: data}));
+                    return;
+                }
             }
 
             delete msg.password;
-            queue.lastMessageJSON = JSON.stringify(msg);
+
+            var msgString = JSON.stringify(msg);
+
+            if (msg.cmd !== 'form-data' &&
+                msg.cmd !== 'reset-form') {
+                queue.lastMessageJSON = msgString;
+            }
+
+            // log message
+            log({msg: msg}, now);
+
             clients.forEach(function(client) {
                 if (client != ws) {
-                    client.send(queue.lastMessageJSON);
+                    client.send(msgString);
                 }
             });
             // confirm message by echoing it, with "self": "1"
             msg['self']=1;
             ws.send(JSON.stringify(msg));
 
-            // log message
-            log(msg, now);
         } catch (e) {
-            log({'log-msg': "malformed message: " + e}, now);
-            ws.send(JSON.stringify({error: "malformed message", data: data}));
+            log({'log-msg': "malformed message: " + e, data: data}, now);
+            ws.send(JSON.stringify({cmd: 'error', error: "malformed message", data: data}));
         }
     });
 
@@ -142,12 +156,25 @@ var wsserver = function(ws) {
         log({'log-msg': 'a connection closed for uri ' + path});
         if (clients.indexOf(ws) != -1) {
             clients.splice(clients.indexOf(ws), 1);
-            log({'log-msg': "clients length: " + clients.length});
             // remove the socket from its list, if the list is empty, remove that
             if (!clients.length) {
                 delete queues[path];
                 queue = undefined;
                 clients = undefined;
+            } else {
+                var msg = {};
+                var now = new Date();
+                msg['cmd'] = 'client-gone';
+                msg['client-id'] = clientID;
+                msg['server-date'] = now.toISOString();
+                msg['server-time-millis'] = now.getTime();
+                msg['server-path'] = path;
+                log({msg: msg}, now);
+                var msgString = JSON.stringify(msg);
+
+                clients.forEach(function(client) {
+                    client.send(msgString);
+                });
             }
         } else {
             log({'log-msg': "connection for uri " + path + " not found in array clients"});
