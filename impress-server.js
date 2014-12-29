@@ -156,12 +156,25 @@ var wsserver = function(ws) {
         log({'log-msg': 'a connection closed for uri ' + path});
         if (clients.indexOf(ws) != -1) {
             clients.splice(clients.indexOf(ws), 1);
-            log({'log-msg': "clients length: " + clients.length});
             // remove the socket from its list, if the list is empty, remove that
             if (!clients.length) {
                 delete queues[path];
                 queue = undefined;
                 clients = undefined;
+            } else {
+                var msg = {};
+                var now = new Date();
+                msg['cmd'] = 'client-gone';
+                msg['client-id'] = clientID;
+                msg['server-date'] = now.toISOString();
+                msg['server-time-millis'] = now.getTime();
+                msg['server-path'] = path;
+                log({msg: msg}, now);
+                var msgString = JSON.stringify(msg);
+
+                clients.forEach(function(client) {
+                    client.send(msgString);
+                });
             }
         } else {
             log({'log-msg': "connection for uri " + path + " not found in array clients"});
