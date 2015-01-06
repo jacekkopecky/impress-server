@@ -140,7 +140,7 @@ var wsserver = function(ws) {
             });
             // confirm message by echoing it, with "self": "1"
             msg['self']=1;
-            ws.send(JSON.stringify(msg, function(){}));
+            ws.send(JSON.stringify(msg), function(){});
 
         } catch (e) {
             log({'log-msg': "malformed message: " + e, data: data}, now);
