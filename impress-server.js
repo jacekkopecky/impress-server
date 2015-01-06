@@ -151,7 +151,7 @@ var wsserver = function(ws) {
     // todo maybe have an always-increasing msg-id for ordering semantics?
 
     ws.on('close', function() {
-        log({'log-msg': 'a connection closed for uri ' + path, 'clients': clients.length - 1});
+        log({'log-msg': 'a connection closed for uri ' + path, 'client': clientID, 'clients': clients.length - 1});
         if (clients.indexOf(ws) != -1) {
             clients.splice(clients.indexOf(ws), 1);
             // remove the socket from its list, if the list is empty, remove that
@@ -167,13 +167,11 @@ var wsserver = function(ws) {
                 msg['server-date'] = now.toISOString();
                 msg['server-time-millis'] = now.getTime();
                 msg['server-path'] = path;
-                log({msg: msg}, now);
+                // log({msg: msg}, now);
                 var msgString = JSON.stringify(msg);
 
                 clients.forEach(function(client) {
-                    client.send(msgString, function(error){
-                        //if (error) log({'log-msg': 'message not sent to client ' + client.clientID});
-                    });
+                    client.send(msgString, function(error){});
                 });
             }
         } else {
