@@ -55,7 +55,7 @@ if (nofilelimit.hard != null && nofilelimit.hard < desiredlimit) {
     desiredlimit = nofilelimit.hard;
 }
 posix.setrlimit('nofile', { soft: desiredlimit });
-log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
+//log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
 
 var fiveMinutes = 5*60*1000
 var extensions = [ "html", "css", "js", "ico" ]
@@ -82,17 +82,15 @@ var nextClientID = 0;
 
 var wsserver = function(ws) {
     var path = ws.upgradeReq.url;
-    log({'log-msg': 'received connection for uri ' + path});
-
     // todo check that the path is of the form /impress-rc/escaped-uri/key
 
     // add the socket to a list by the path
     var queue = queues[path] || (queues[path] = {});
     var clients = queue.clients || (queue.clients = []);
-    var clientID = nextClientID++;
+    var clientID = ws.clientID = nextClientID++;
     clients.push(ws);
 
-    log({'log-msg': "clients length: " + clients.length});
+    log({'log-msg': 'received connection for uri ' + path, 'clients': clients.length});
 
     // send last message seen on this queue (if any)
     if (queue.lastMessageJSON != undefined) {
@@ -137,12 +135,12 @@ var wsserver = function(ws) {
 
             clients.forEach(function(client) {
                 if (client != ws) {
-                    client.send(msgString);
+                    client.send(msgString, function(){});
                 }
             });
             // confirm message by echoing it, with "self": "1"
             msg['self']=1;
-            ws.send(JSON.stringify(msg));
+            ws.send(JSON.stringify(msg, function(){}));
 
         } catch (e) {
             log({'log-msg': "malformed message: " + e, data: data}, now);
@@ -153,14 +151,14 @@ var wsserver = function(ws) {
     // todo maybe have an always-increasing msg-id for ordering semantics?
 
     ws.on('close', function() {
-        log({'log-msg': 'a connection closed for uri ' + path});
+        log({'log-msg': 'a connection closed for uri ' + path, 'clients': clients.length - 1});
         if (clients.indexOf(ws) != -1) {
             clients.splice(clients.indexOf(ws), 1);
             // remove the socket from its list, if the list is empty, remove that
             if (!clients.length) {
                 delete queues[path];
                 queue = undefined;
-                clients = undefined;
+                //clients = undefined;
             } else {
                 var msg = {};
                 var now = new Date();
@@ -173,7 +171,9 @@ var wsserver = function(ws) {
                 var msgString = JSON.stringify(msg);
 
                 clients.forEach(function(client) {
-                    client.send(msgString);
+                    client.send(msgString, function(error){
+                        //if (error) log({'log-msg': 'message not sent to client ' + client.clientID});
+                    });
                 });
             }
         } else {
