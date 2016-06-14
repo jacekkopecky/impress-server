@@ -14,6 +14,8 @@
  * (none ongoing)
  */
 
+/* jshint node:true, asi:true, sub: true */
+
 'use strict';
 
 var WebSocketServer = require('ws').Server
@@ -22,6 +24,9 @@ var express = require('express')
 var posix = require('posix')
 var morgan  = require('morgan')
 var fs = require('fs')
+var serveIndex = require('serve-index')
+
+var config = require('./config')
 
 var app = express()
 
@@ -51,17 +56,19 @@ var log = function(obj, now) {
 // raise maximum number of open file descriptors to 10k, hard limit is left unchanged
 var nofilelimit = posix.getrlimit('nofile');
 var desiredlimit = 10000;
-if (nofilelimit.hard != null && nofilelimit.hard < desiredlimit) {
+if (nofilelimit.hard !== null && nofilelimit.hard < desiredlimit) {
     desiredlimit = nofilelimit.hard;
 }
 posix.setrlimit('nofile', { soft: desiredlimit });
 //log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
 
-var fiveMinutes = 5*60*1000
 var extensions = [ "html", "css", "js", "ico" ]
 
-app.use(express.static('jacek-soc', { maxAge: fiveMinutes, extensions: extensions}));
-app.use(express.static('static', { maxAge: fiveMinutes, extensions: extensions }));
+app.use(express.static('jacek-soc', { maxAge: config.staticCacheTime, extensions: extensions}));
+app.use(express.static('static', { maxAge: config.staticCacheTime, extensions: extensions }));
+
+// this cannot go on the main public server as I don't want everything visible and linked
+if (config.provideIndex) app.use('/', serveIndex('static', {view: 'details'}));
 
 app.get('/api/status', function(req, res) {
     res.header('Content-Type', 'text/plain');
@@ -70,10 +77,10 @@ app.get('/api/status', function(req, res) {
              "processed " + requestcount + " requests");
 })
 
-var server1 = http.createServer(app);
-server1.listen(8443);
-var server2 = http.createServer(app);
-server2.listen(8000);
+var server = http.createServer(app);
+server.listen(8000);
+
+console.log('server started on port 8000');
 
 var queues = {};
 var nextClientID = 0;
@@ -93,7 +100,7 @@ var wsserver = function(ws) {
     log({'log-msg': 'received connection for uri ' + path, 'clients': clients.length});
 
     // send last message seen on this queue (if any)
-    if (queue.lastMessageJSON != undefined) {
+    if (queue.lastMessageJSON !== undefined) {
         ws.send(queue.lastMessageJSON);
     }
 
@@ -120,6 +127,9 @@ var wsserver = function(ws) {
                     return;
                 }
             }
+
+            // todo refactor, don't handle form-data like this
+            // but the default cmd (if not present) must be 'goto' for old presentations
 
             delete msg.password;
 
@@ -180,7 +190,5 @@ var wsserver = function(ws) {
     });
 };
 
-var wss1 = new WebSocketServer({server: server1});
-var wss2 = new WebSocketServer({server: server2});
-wss1.on('connection', wsserver);
+var wss2 = new WebSocketServer({server: server});
 wss2.on('connection', wsserver);
