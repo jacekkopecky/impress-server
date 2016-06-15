@@ -20,6 +20,7 @@
 
 var WebSocketServer = require('ws').Server
 var http = require('http')
+var https = require('https')
 var express = require('express')
 var posix = require('posix')
 var morgan  = require('morgan')
@@ -27,6 +28,17 @@ var fs = require('fs')
 var serveIndex = require('serve-index')
 
 var config = require('./config')
+
+
+var credentials = {};
+
+if (config.https) {
+  console.log("reading ssl stuff");
+  let httpsKey  = fs.readFileSync(config.httpsKey, 'utf8');
+  let httpsCert = fs.readFileSync(config.httpsCert, 'utf8');
+  credentials = {key: httpsKey, cert: httpsCert};
+}
+
 
 var app = express()
 
@@ -79,8 +91,14 @@ app.get('/api/status', function(req, res) {
 
 var server = http.createServer(app);
 server.listen(8000);
-
 console.log('server started on port 8000');
+
+if (config.https) {
+  var servers = https.createServer(credentials, app);
+  servers.listen(8443);
+  console.log('secure server started on port 8443');
+}
+
 
 var queues = {};
 var nextClientID = 0;
@@ -190,5 +208,10 @@ var wsserver = function(ws) {
     });
 };
 
-var wss2 = new WebSocketServer({server: server});
-wss2.on('connection', wsserver);
+var wss = new WebSocketServer({server: server});
+wss.on('connection', wsserver);
+
+if (config.https) {
+    var wsss = new WebSocketServer({server: servers});
+    wsss.on('connection', wsserver);
+}
