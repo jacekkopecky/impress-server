@@ -4,11 +4,12 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "cors": "^2.8.1",
     "express": "4.x",
-    "ws": "0.4.x",
     "http-auth": "2.x",
-    "posix": "4.x.x",
     "morgan": "1.x.x",
-    "serve-index": "1.x.x"
+    "posix": "4.x.x",
+    "serve-index": "1.x.x",
+    "ws": "0.4.x"
   }
 }

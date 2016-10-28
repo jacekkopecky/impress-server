@@ -26,6 +26,7 @@ var posix = require('posix')
 var morgan  = require('morgan')
 var fs = require('fs')
 var serveIndex = require('serve-index')
+var cors = require('cors');
 
 var config = require('./config')
 
@@ -75,6 +76,19 @@ posix.setrlimit('nofile', { soft: desiredlimit });
 //log({'log-msg': 'set nofile limit', 'limit': posix.getrlimit('nofile')});
 
 var extensions = [ "html", "css", "js", "ico" ]
+
+// this is for WebScript, but should find a better place somewhere else
+var messages = [ "Ahoj!", "Hi!", "Cześć!", "¡Hola!", "Ciao!", "Servus!" ];
+app.use('/tmp/ws', cors());
+app.use('/tmp/ws', express.static('static/tmp/ws', { maxAge: config.staticCacheTime, extensions: extensions }));
+app.use('/tmp/ws', serveIndex('static/tmp/ws', {view: 'details'}));
+app.use('/tmp/ws/dyn1', function(req, res) {
+  var message = messages[ Math.floor(Date.now()/5000) % messages.length ];
+  res.send(message + "\n" + new Date().toString());
+});
+app.use('/tmp/ws/dyn2', function(req, res) {
+  res.send(JSON.stringify({x: Math.round(Math.random()*200), y: Math.round(Math.random()*200)}));
+});
 
 app.use(express.static('jacek-soc', { maxAge: config.staticCacheTime, extensions: extensions}));
 app.use(express.static('static', { maxAge: config.staticCacheTime, extensions: extensions }));
