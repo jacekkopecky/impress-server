@@ -1,15 +1,24 @@
 {
-  "name": "jacek-testing",
-  "description": "testing stuff by Jacek Kopecky",
+  "name": "impress-server",
+  "description": "web server, and impress.js remote control and interactivity server",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "start": "node impress-server.js"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
+  },
   "dependencies": {
-    "cors": "^2.8.1",
-    "express": "4.x",
-    "http-auth": "2.x",
-    "morgan": "1.x.x",
-    "posix": "4.x.x",
-    "serve-index": "1.x.x",
-    "ws": "0.4.x"
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "posix": "^4.1.1",
+    "serve-index": "^1.9.1",
+    "ws": "^5.0.0"
   }
 }
