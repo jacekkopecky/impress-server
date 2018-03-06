@@ -1,100 +1,246 @@
 <!doctype html>
 <title>Impress development</title>
 <style>
-body { font-size: 1.5em; }
+body { font-size: 1.2rem; }
+hr { margin: 2em 0; }
+hr ~ p { font-size: 1rem; }
 </style>
 
-<!--
-<p><a href="/presentations/devel/2014-dbprin/02-file-based?key=sdb">dbprin 2</a>&nbsp;&nbsp;<a href="/presentations/devel/2014-dbprin/02-file-based?key=sdb&amp;screen=left">left</a>&nbsp;&nbsp;<a href="/presentations/devel/2014-dbprin/02-file-based?key=sdb&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/presentations/devel/2014-dbprin/02-file-based?key=sdb&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/presentations/devel/2014-dbprin/02-file-based/js/impress-multiscreen-console.html?uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fpresentations%2Fdevel%2F2014-dbprin%2F02-file-based%2F&amp;screens=%5B%5B%220%22%5D%2C%5B%22left%22%2C%22right%22%5D%5D&amp;bundle=1">multiscreen console</a></p>
--->
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/17-web-server?key=jacek">dbprin 17</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/17-web-server?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/17-web-server?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/17-web-server?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/17-web-server/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F17-web-server%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/17-web-server/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F17-web-server%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
 
-<p><a href="/teaching/2014/dbprin/01-intro?key=jacek">dbprin 1</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/01-intro?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/01-intro?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/01-intro?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/01-intro/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F01-intro%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/02-file-based?key=jacek">dbprin 2</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/02-file-based?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/02-file-based?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/02-file-based?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/02-file-based/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F02-file-based%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/03-eerd?key=jacek">dbprin 3</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/03-eerd?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/03-eerd?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/03-eerd?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/03-eerd/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F03-eerd%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/04-ddict?key=jacek">dbprin 4</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/04-ddict?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/04-ddict?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/04-ddict?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/04-ddict/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F04-ddict%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/05-ddeps?key=jacek">dbprin 5</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/05-ddeps?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/05-ddeps?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/05-ddeps?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/05-ddeps/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F05-ddeps%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/06-norm?key=jacek">dbprin 6</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/06-norm?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/06-norm?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/06-norm?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/06-norm/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F06-norm%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/07-physical?key=jacek">dbprin 7</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/07-physical?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/07-physical?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/07-physical?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/07-physical/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F07-physical%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/10-algebra?key=jacek">dbprin 10</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/10-algebra?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/10-algebra?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/10-algebra?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/10-algebra/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F10-algebra%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/11-algopt?key=jacek">dbprin 11</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/11-algopt?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/11-algopt?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/11-algopt?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/11-algopt/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F11-algopt%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/17-web-client?key=jacek">dbprin 17</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/17-web-client?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/17-web-client?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/17-web-client?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/17-web-client/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F17-web-client%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/18-web-server?key=jacek">dbprin 18</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/18-web-server?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/18-web-server?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/18-web-server?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/18-web-server/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F18-web-server%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/19-transactions?key=jacek">dbprin 19</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/19-transactions?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/19-transactions?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/19-transactions?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/19-transactions/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F19-transactions%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/20-concurrency?key=jacek">dbprin 20</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/20-concurrency?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/20-concurrency?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/20-concurrency?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/20-concurrency/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F20-concurrency%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/presentations/devel/2014-other/2015-03-04-wed-pep-impress?key=jacek">impress web pep</a>&nbsp;&nbsp;<a 
-      href="/presentations/devel/2014-other/2015-03-04-wed-pep-impress?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/presentations/devel/2014-other/2015-03-04-wed-pep-impress?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/presentations/devel/2014-other/2015-03-04-wed-pep-impress?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/presentations/devel/2014-other/2015-03-04-wed-pep-impress/js/impress-multiscreen-console.html?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fpresentations%2Fdevel%2F2014-other%2F2015-03-04-wed-pep-impress%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
-<p><a href="/teaching/2014/dbprin/23-semdb?key=jacek">dbprin 20</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/23-semdb?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/23-semdb?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/23-semdb?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
-      href="/teaching/2014/dbprin/23-semdb?ratio=1.25&uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2014%2Fdbprin%2F23-semdb%2F&screens=[[%220%22]%2C[%22left%22%2C%22right%22]]&amp;bundle=1">multiscreen console</a></p>
-            
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/16-web-client?key=jacek">dbprin 16</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/16-web-client?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/16-web-client?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/16-web-client?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/16-web-client/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F16-web-client%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/16-web-client/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F16-web-client%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/15-web?key=jacek">dbprin 15</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/15-web?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/15-web?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/15-web?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/15-web/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F15-web%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/15-web/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F15-web%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/10-relalg?key=jacek">dbprin 10</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/10-relalg?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/10-relalg?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/10-relalg?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/10-relalg/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F10-relalg%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/10-relalg/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F10-relalg%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/03-eerd?key=jacek">dbprin 03</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/03-eerd?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/03-eerd?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/03-eerd?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/03-eerd/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F03-eerd%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2017/dbprin/03-eerd/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fdbprin%2F03-eerd%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2017/webf1/02-html?key=jacek">webf1 html</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/webf1/02-html?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/webf1/02-html?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/webf1/02-html?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2017/webf1/02-html/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fwebf1%2F02-html%2F&amp;bundle=left:right">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2017/webf1/02-html/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2017%2Fwebf1%2F02-html%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<hr>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/02-html?key=jacek">webf1 html</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/02-html?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/02-html?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/02-html?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/02-html/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fwebf1%2F02-html%2F&amp;bundle=left:right">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/02-html/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fwebf1%2F02-html%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/16-db-in-web-apps?key=jacek">webf1 db teaser</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/16-db-in-web-apps?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/16-db-in-web-apps?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/16-db-in-web-apps?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/16-db-in-web-apps/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fwebf1%2F16-db-in-web-apps%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webf1/16-db-in-web-apps/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fwebf1%2F16-db-in-web-apps%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/webres/apis?key=jacek">webres apis</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webres/apis?key=jacek&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webres/apis/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fwebres%2Fapis%2F&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/webres/apis/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fwebres%2Fapis%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/01-intro?key=jacek">dbprin 01</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/01-intro?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/01-intro?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/01-intro?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/01-intro/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F01-intro%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/01-intro/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F01-intro%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/02-file-based?key=jacek">dbprin 02</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/02-file-based?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/02-file-based?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/02-file-based?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/02-file-based/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F02-file-based%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/02-file-based/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F02-file-based%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/03-eerd?key=jacek">dbprin 03</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/03-eerd?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/03-eerd?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/03-eerd?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/03-eerd/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F03-eerd%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/03-eerd/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F03-eerd%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/04-ddict?key=jacek">dbprin 04</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/04-ddict?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/04-ddict?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/04-ddict?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/04-ddict/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F04-ddict%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/04-ddict/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F04-ddict%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/05-norm?key=jacek">dbprin 05</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/05-norm?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/05-norm?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/05-norm?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/05-norm/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F05-norm%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/05-norm/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F05-norm%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/10-algebra?key=jacek">dbprin 10</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/10-algebra?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/10-algebra?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/10-algebra?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/10-algebra/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F10-algebra%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/10-algebra/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F10-algebra%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/11-algopt?key=jacek">dbprin 11</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/11-algopt?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/11-algopt?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/11-algopt?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/11-algopt/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F11-algopt%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/11-algopt/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F11-algopt%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/15-web?key=jacek">dbprin 15</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/15-web?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/15-web?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/15-web?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/15-web/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F15-web%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/15-web/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F15-web%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/16-web-client?key=jacek">dbprin 16</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/16-web-client?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/16-web-client?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/16-web-client?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/16-web-client/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F16-web-client%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/16-web-client/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F16-web-client%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/17-web-server?key=jacek">dbprin 17</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/17-web-server?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/17-web-server?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/17-web-server?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/17-web-server/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F17-web-server%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/17-web-server/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F17-web-server%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/20-transactions?key=jacek">dbprin 20</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/20-transactions?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/20-transactions?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/20-transactions?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/20-transactions/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F20-transactions%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/20-transactions/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F20-transactions%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/22-semdb?key=jacek">dbprin 22</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/22-semdb?key=jacek&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/22-semdb/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F22-semdb%2F&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2016/dbprin/22-semdb/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2016%2Fdbprin%2F22-semdb%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<hr>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/webf1/02-html?key=jacek">webf1 html</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/webf1/02-html?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/webf1/02-html?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/webf1/02-html?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/webf1/02-html/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fwebf1%2F02-html%2F&amp;bundle=left:right">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/webf1/02-html/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fwebf1%2F02-html%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/indadd/2016-01-normalization?key=jacek">indadd normalization</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/indadd/2016-01-normalization?key=jacek&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/indadd/2016-01-normalization/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Findadd%2F2016-01-normalization%2F&amp;pres">console</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/01-intro?key=jacek">dbprin 01</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/01-intro?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/01-intro?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/01-intro?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/01-intro/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F01-intro%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/01-intro/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F01-intro%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/02-file-based?key=jacek">dbprin 02</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/02-file-based?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/02-file-based?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/02-file-based?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/02-file-based/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F02-file-based%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/02-file-based/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F02-file-based%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/03-eerd?key=jacek">dbprin 03</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/03-eerd?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/03-eerd?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/03-eerd?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/03-eerd/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F03-eerd%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/03-eerd/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F03-eerd%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/04-ddict?key=jacek">dbprin 04</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/04-ddict?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/04-ddict?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/04-ddict?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/04-ddict/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F04-ddict%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/04-ddict/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F04-ddict%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/05-ddeps?key=jacek">dbprin 05</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/05-ddeps?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/05-ddeps?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/05-ddeps?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/05-ddeps/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F05-ddeps%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/05-ddeps/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F05-ddeps%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/06-norm?key=jacek">dbprin 06</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/06-norm?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/06-norm?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/06-norm?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/06-norm/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F06-norm%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/06-norm/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F06-norm%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/10-algebra?key=jacek">dbprin 10</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/10-algebra?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/10-algebra?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/10-algebra?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/10-algebra/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F10-algebra%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/10-algebra/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F10-algebra%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/11-algopt?key=jacek">dbprin 11</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/11-algopt?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/11-algopt?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/11-algopt?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/11-algopt/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F11-algopt%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/11-algopt/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F11-algopt%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/15-web?key=jacek">dbprin 15</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/15-web?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/15-web?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/15-web?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/15-web/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F15-web%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/15-web/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F15-web%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/16-web-client?key=jacek">dbprin 16</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/16-web-client?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/16-web-client?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/16-web-client?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/16-web-client/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F16-web-client%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/16-web-client/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F16-web-client%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/17-web-server?key=jacek">dbprin 17</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/17-web-server?key=jacek&amp;screen=left">left</a>&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/17-web-server?key=jacek&amp;screen=right">right</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/17-web-server?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/17-web-server/js/impress-multiscreen-console.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F17-web-server%2F&amp;bundle=left:right&amp;pres">multiscreen console</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      href="http://jacek.soc.port.ac.uk/teaching/2015/dbprin/17-web-server/js/impress-formsview.html?key=jacek&amp;uri=http%3A%2F%2Fjacek.soc.port.ac.uk%2Fteaching%2F2015%2Fdbprin%2F17-web-server%2F%3Fkey%3Djacek%23%2Ftitle">forms</a></p>
+
+<p><a href="http://jacek.soc.port.ac.uk/2016-05-16-bratislava?key=jacek">bratislava</a>&nbsp;&nbsp;&nbsp;&nbsp;<a 
+      href="http://jacek.soc.port.ac.uk/2016-05-16-bratislava?key=jacek&amp;screenBundle=left:right&amp;rcview">rc</a></p>
+

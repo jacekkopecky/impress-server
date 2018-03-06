@@ -3,5 +3,6 @@ static/index2.html
 static/*/
 node_modules/
 *.swp
+*.bak
 jacek-soc
 http.log
