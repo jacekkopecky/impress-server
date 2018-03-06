@@ -5,10 +5,16 @@
   "private": true,
   "dependencies": {
     "express": "4.x",
-    "ws": "0.4.x",
     "http-auth": "2.x",
-    "posix": "4.x.x",
     "morgan": "1.x.x",
-    "serve-index": "1.x.x"
+    "node-statsd": "^0.1.1",
+    "posix": "4.x.x",
+    "response-time": "^2.3.2",
+    "serve-index": "1.x.x",
+    "ws": "0.4.x"
+  },
+  "main": "impress-server.js",
+  "scripts": {
+    "start": "node impress-server"
   }
 }

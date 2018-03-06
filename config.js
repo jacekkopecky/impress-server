@@ -7,4 +7,8 @@ module.exports = {
   https: !localEnvironment,
   httpsCert: "/etc/letsencrypt/live/jacek.soc.port.ac.uk/fullchain.pem",
   httpsKey: "/etc/letsencrypt/live/jacek.soc.port.ac.uk/privkey.pem",
+  statsd: {
+    port: 3495,
+    host: undefined,
+  },
 };

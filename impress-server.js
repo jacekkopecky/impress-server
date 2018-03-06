@@ -18,16 +18,20 @@
 
 'use strict';
 
-var WebSocketServer = require('ws').Server
-var http = require('http')
-var https = require('https')
-var express = require('express')
-var posix = require('posix')
-var morgan  = require('morgan')
-var fs = require('fs')
-var serveIndex = require('serve-index')
+var WebSocketServer = require('ws').Server;
+var http = require('http');
+var https = require('https');
+var express = require('express');
+var responseTime = require('response-time');
+var statsd = require('node-statsd');
+var posix = require('posix');
+var morgan  = require('morgan');
+var fs = require('fs');
+var serveIndex = require('serve-index');
 
-var config = require('./config')
+var config = require('./config');
+
+var stats = new statsd(config.statsd);
 
 
 var credentials = {};
@@ -45,6 +49,26 @@ var app = express()
 // standard apache logging to file http.log
 var httplog = fs.createWriteStream('http.log', {flags: 'a', mode: 384 /* 0600 */ })
 app.use(morgan('combined', {stream: httplog}))
+
+app.use(responseTime(function(req,res,time) {
+  var stat = 'http.' + req.method.toLowerCase() + '.';
+  var timingStat = stat +
+    req.url.toLowerCase()
+           .replace(/[:\.]/g, '')
+           .replace(/^\/+|\/+$/g, '')
+           .split('/', 3)
+           .join('.');
+  stats.timing(timingStat, time);
+
+  var counterStat = stat +
+    req.url.toLowerCase()
+           .replace(/[:\.]/g, '')
+           .replace(/^\/+|\/+$/g, '')
+           .split('/')
+           .join('.');
+
+  stats.increment(counterStat);
+}));
 
 // also tiny logging to console
 app.use(morgan('tiny'))
@@ -89,6 +113,7 @@ app.get('/api/status', function(req, res) {
              "processed " + requestcount + " requests");
 })
 
+app.use(function(req,res,next) { console.log(req); next(); });
 var server = http.createServer(app);
 server.listen(8000);
 console.log('server started on port 8000');
@@ -103,11 +128,20 @@ if (config.https) {
 var queues = {};
 var nextClientID = 0;
 
-// todo a lot of logging
+// todo a lot of logging and stats
 
 var wsserver = function(ws) {
+    stats.increment('ws.connection');
     var path = ws.upgradeReq.url;
     // todo check that the path is of the form /impress-rc/escaped-uri/key
+
+    var counterStat = 'ws.connection.' +
+      path.toLowerCase()
+             .replace(/[:\.]/g, '')
+             .replace(/^\/+|\/+$/g, '')
+             .split('/')
+             .join('.');
+    stats.increment(counterStat);
 
     // add the socket to a list by the path
     var queue = queues[path] || (queues[path] = {});
@@ -125,6 +159,7 @@ var wsserver = function(ws) {
     // resend any message to all the clients, but check pwd
     // save latest message (w/o password)
     ws.on('message', function(data, flags) {
+        stats.increment('ws.message');
         var now = new Date();
         log({'log-msg': "message on path " + path}, now);
         try {
