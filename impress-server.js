@@ -51,6 +51,13 @@ app.use((req, res, next) => {
   return next();
 });
 
+// "A man is not dead while his name is still spoken."
+// - Going Postal, Chapter 4 prologue
+app.use((req, res, next) => {
+  res.set('X-Clacks-Overhead', 'GNU Terry Pratchett');
+  next();
+});
+
 const log = function (obj, now) {
   now = now || new Date();
   obj.logging_timestamp = now.toISOString();
